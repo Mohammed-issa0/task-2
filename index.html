@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <title>task-2</title>
 </head>
@@ -18,15 +19,17 @@
         </div>
         <div>
             <div class="tex">Email</div>
-            <input type="text" placeholder="Your Email" class="email ">
+            <input type="text" placeholder="Enter emails separated by commas" class="email" >
+            <span class="error" id="email-error">Invalid email address</span>
         </div>
         <div>
             <div class="tex">Number</div>
-            <input type="number" placeholder="Your Number" class="number ">
+            <input type="number" placeholder="Your Number" class="number " min="1" maxlength="10">
         </div>
-        <div>
+        <div class="pass-con">
             <div class="tex">Password</div>
-            <input type="text" placeholder="Your Password" class="password ">
+            <input type="password" placeholder="Your Password" class="password ">
+            <i class='bx bx-hide toggle-password' id="togglePassword"></i>
         </div>
         <button class="btn">Submit</button>
     </div>

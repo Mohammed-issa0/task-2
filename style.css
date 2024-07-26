@@ -78,3 +78,20 @@ input{
     background-color: var(--4-color);
     letter-spacing: 1.2px;
 }
+.pass-con{
+    position: relative;
+}
+.toggle-password {
+    position: absolute;
+    top: 70%;
+    right: 25%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #888;
+}
+
+.error {
+    color: red;
+    display: none;
+}
