@@ -20,7 +20,9 @@ header div{
     font-size: 20px;
     font-weight: 400;
     color: #fff;
+    white-space: nowrap;
 }
+
 #form {
     width: 300px;
     margin: 20vh auto 0 auto;

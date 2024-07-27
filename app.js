@@ -54,8 +54,9 @@ const validateInputs = () => {
         setError(username, 'Username is required'); 
     } else {
         setSuccess(username);
+        readOnly(username);
     }
-    readOnly(username);
+    
 
     if(emailValue === '') {
         setError(email, 'Email is required');
@@ -63,8 +64,9 @@ const validateInputs = () => {
         setError(email, 'Provide a valid email address');
     } else {
         setSuccess(email);
+        readOnly(email);
     }
-    readOnly(email);
+    
 
     if(numberValue === '') {
         setError(number, 'Number is required');
@@ -72,8 +74,9 @@ const validateInputs = () => {
         setError(number, 'The number should be 10 digits!');
     } else {
         setSuccess(number);
+        readOnly(number);
     }
-    readOnly(number);
+    
 
     if (numberValue.length > 10) {
         numberValue = numberValue.slice(0, 10);
@@ -84,8 +87,9 @@ const validateInputs = () => {
         setError(password, 'Password must be at least 8 character.')
     } else {
         setSuccess(password);
+        readOnly(password);
     }
-    readOnly(password);
+    
 
     if(password2Value === '') {
         setError(password2, 'Please confirm your password');
@@ -93,9 +97,10 @@ const validateInputs = () => {
         setError(password2, "Passwords doesn't match");
     } else {
         setSuccess(password2);
+        readOnly(password2);
     }
 
-    readOnly(password2);
+    
     
 };
 
