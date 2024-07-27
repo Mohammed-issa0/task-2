@@ -1,39 +1,250 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <title>task-2</title>
+    <title>Task-2</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            caret-color: var(--4-color);
+            overflow-x: hidden;
+        }
+
+        :root {
+            --f-color: #D6EFD8;
+            --s-color: #80AF81;
+            --3-color: #508D4E;
+            --4-color: #1A5319;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px auto;
+            background-color: var(--4-color);
+            width: 93%;
+            height: 40px;
+            border-radius: 8px;
+        }
+
+        header div {
+            font-size: 20px;
+            font-weight: 800;
+            color: rgb(255, 255, 255);
+            margin: 0 20px;
+        }
+
+        .container {
+            width: 90%;
+            height: 100vh;
+            background-color: var(--f-color);
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            margin: auto;
+            border-radius: 8px;
+        }
+
+        .container div {
+            background-color: var(--s-color);
+            width: 75%;
+            height: auto;
+            margin: 10px 0;
+            padding: 0 10px;
+            border-radius: 8px;
+        }
+
+        .tex {
+            font-size: 20px;
+            font-weight: 500;
+            color: #113810;
+        }
+
+        input {
+            border: none;
+            width: 75%;
+            height: 30px;
+            margin-left: 10px;
+            margin-bottom: 10px;
+            outline: none;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .btn {
+            outline: none;
+            border: none;
+            background-color: var(--3-color);
+            height: 30px;
+            width: 200px;
+            margin: 5px;
+            color: rgb(255, 255, 255);
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .btn:hover {
+            background-color: var(--4-color);
+            letter-spacing: 1.2px;
+        }
+
+        .pass-con {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            top: 70%;
+            right: 25%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            font-size: 20px;
+            color: #888;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+    </style>
 </head>
+
 <body>
     <header>
         <div class="Mohammed">Mohammed issa</div>
         <div class="task">Task_2</div>
     </header>
-    <div class="container">
+
+    <form class="container">
         <div>
-            <div class=" tex">Name</div>
-            <input type="text" placeholder="Your Name" class="name ">
+            <div class="tex">Name</div>
+            <input type="text" placeholder="Your Name" class="name" required autofocus>
         </div>
         <div>
             <div class="tex">Email</div>
-            <input type="text" placeholder="Enter emails separated by commas" class="email" >
+            <input type="text" placeholder="Enter emails separated by commas" autofocus class="email" required>
             <span class="error" id="email-error">Invalid email address</span>
         </div>
         <div>
             <div class="tex">Number</div>
-            <input type="number" placeholder="Your Number" class="number " min="1" maxlength="10">
+            <input type="number" placeholder="Your Number" class="number" min="1" maxlength="10" required autofocus>
+            <span class="error" id="num-error">Invalid number</span>
         </div>
         <div class="pass-con">
             <div class="tex">Password</div>
-            <input type="password" placeholder="Your Password" class="password ">
+            <input type="password" placeholder="Your Password" class="password" required autofocus>
             <i class='bx bx-hide toggle-password' id="togglePassword"></i>
         </div>
         <button class="btn">Submit</button>
-    </div>
-    
-    <script src="script.js"></script>
+    </form>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const name = document.querySelector('.name');
+            const email = document.querySelector('.email');
+            const num = document.querySelector('.number');
+            const password = document.querySelector('.password');
+            const btn = document.querySelector('.btn');
+            const emailError = document.getElementById('email-error');
+            const numberError = document.getElementById('num-error');
+            let emailV;
+
+            name.addEventListener('input', () => {
+                if (name.value.length > 15) {
+                    name.value = name.value.slice(0, 15);
+                }
+            });
+
+            email.addEventListener('input', () => {
+                if (!validateEmails(email.value)) {
+                    emailError.style.display = 'block';
+                } else {
+                    emailError.style.display = 'none';
+                }
+            });
+
+            num.addEventListener('input', () => {
+                if (num.value.length > 10) {
+                    num.value = num.value.slice(0, 10);
+                }
+                if (!validatenumber(num.value)) {
+                    numberError.style.display = 'block';
+                } else {
+                    numberError.style.display = 'none';
+                }
+            });
+
+            password.addEventListener('input', () => {
+                if (password.value.length > 10) {
+                    password.value = password.value.slice(0, 10);
+                }
+            });
+
+            function validateEmails(emails) {
+                const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const emailArray = emails.split(',');
+                for (let email of emailArray) {
+                    email = email.trim();
+                    if (!re.test(email)) {
+                        return false;
+                    }
+                }
+                return true;
+            }
+
+            function validatenumber(number) {
+                const re = /^\d+$/;
+                return re.test(number) && Number(number) > 0;
+            }
+
+            btn.addEventListener('click', (event) => {
+                if (!validateEmails(email.value) || !validatenumber(num.value)) {
+                    event.preventDefault();
+                } else {
+                    let data = {
+                        name: name.value,
+                        email: email.value,
+                        number: num.value,
+                        password: password.value
+                    };
+                    emailV=email.value;
+                    let dataArray = JSON.parse(localStorage.getItem('dataLog')) || [];
+                    dataArray.push(data);
+                    localStorage.setItem('dataLog', JSON.stringify(dataArray));
+                    clearData();
+                    readOnly();
+                }
+            });
+
+            function clearData() {
+                name.value = '';
+                email.value = '';
+                num.value = '';
+                password.value = '';
+            }
+
+            const togglePassword = document.querySelector('#togglePassword');
+            togglePassword.addEventListener('click', () => {
+                const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+                password.setAttribute('type', type);
+                togglePassword.classList.toggle('bx-show');
+                togglePassword.classList.toggle('bx-hide');
+            });
+
+            function readOnly() {
+                email.value = emailV;
+                email.setAttribute('readonly', true);
+            }
+        });
+    </script>
 </body>
+
 </html>

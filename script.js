@@ -4,7 +4,8 @@ let num= document.querySelector(".number");
 let password= document.querySelector(".password");
 let btn = document.querySelector(".btn");
 let emailV;
-
+let numberB=true;
+let emailB=true;
 
 
 name.addEventListener('input', function() {
@@ -13,9 +14,10 @@ name.addEventListener('input', function() {
             }
         });
 num.addEventListener('input', function() {
+        validatenumber(this.value);
             if (this.value.length > 10) {
                 this.value = this.value.slice(0, 10);
-            }
+            }  
         });
 password.addEventListener('input', function() {
             if (this.value.length > 10) {
@@ -35,7 +37,13 @@ function validateEmails(emails) {
             return true;
         }
 
-
+function validatenumber(number) {
+            const re = /\d+/;             
+                if (!re.test(number)) {
+                    return false;
+                }          
+            return true;
+        }
 
 let dataArray=[];
 if(localStorage.dataLog != null){
@@ -46,35 +54,50 @@ if(localStorage.dataLog != null){
 
 btn.onclick=function(){
 
-    console.log(name.value);
-    console.log(email.value);
-    console.log(num.value);
-    console.log(password.value);
-
     const emailValue = document.querySelector('.email').value;
     const emailError = document.getElementById('email-error');
-
+    let numberError = document.getElementById('num-error');
+    let numberValue = document.querySelector('.number').value;
     if (!validateEmails(emailValue)) {
         emailError.style.display = 'block';
         event.preventDefault();
-        
+        emailB=false;        
     } else {
         emailError.style.display = 'none';
         emailV=email.value;
+        emailB=true;
     }
-            
-    let data={
+
+    if (!validatenumber(num.value)) {
+        numberError.style.display = 'block';
+        event.preventDefault();
+        numberB=false;
+        
+    } else {
+        numberError.style.display = 'none'; 
+        numberB=true;
+    }
+
+    if(emailB && numberB){
+        let data={
         name: name.value,
         email: email.value,
         number: num.value,
         password: password.value,
     }
+    console.log(name.value);
+    console.log(email.value);
+    console.log(num.value);
+    console.log(password.value);
 
-    
     dataArray.push(data);
     localStorage.setItem('dataLog', JSON.stringify(dataArray));
     clearData();
     readOnly();
+    }else{
+        console.log('error');
+    }        
+    
 }
 
     function clearData(){
