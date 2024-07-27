@@ -39,6 +39,10 @@ const isValidNumber = number => {
     return re.test(number);
 }
 
+function readOnly(e) {
+      e.setAttribute('readonly', true);
+    }
+
 const validateInputs = () => {
     const usernameValue = username.value.trim();
     const emailValue = email.value.trim();
@@ -51,6 +55,7 @@ const validateInputs = () => {
     } else {
         setSuccess(username);
     }
+    readOnly(username);
 
     if(emailValue === '') {
         setError(email, 'Email is required');
@@ -59,6 +64,7 @@ const validateInputs = () => {
     } else {
         setSuccess(email);
     }
+    readOnly(email);
 
     if(numberValue === '') {
         setError(number, 'Number is required');
@@ -67,6 +73,7 @@ const validateInputs = () => {
     } else {
         setSuccess(number);
     }
+    readOnly(number);
 
     if (numberValue.length > 10) {
         numberValue = numberValue.slice(0, 10);
@@ -78,6 +85,7 @@ const validateInputs = () => {
     } else {
         setSuccess(password);
     }
+    readOnly(password);
 
     if(password2Value === '') {
         setError(password2, 'Please confirm your password');
@@ -87,4 +95,26 @@ const validateInputs = () => {
         setSuccess(password2);
     }
 
+    readOnly(password2);
+    
 };
+
+        const togglePassword = document.querySelector('#togglePassword');
+        const togglePassword2 = document.querySelector('#togglePassword2');
+
+        togglePassword.addEventListener('click', function () {
+            // Toggle the type attribute
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            // Toggle the icon
+            this.classList.toggle('bx-show');
+            this.classList.toggle('bx-hide');
+        });
+        togglePassword2.addEventListener('click', function () {
+            // Toggle the type attribute
+            const type = password2.getAttribute('type') === 'password' ? 'text' : 'password';
+            password2.setAttribute('type', type);
+            // Toggle the icon
+            this.classList.toggle('bx-show');
+            this.classList.toggle('bx-hide');
+        });

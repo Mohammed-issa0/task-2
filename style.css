@@ -2,7 +2,25 @@ body {
     background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
     font-family: 'Poppins', sans-serif;
 }
-
+.container{
+    position: relative;
+}
+header{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 40px;
+    align-items: center;
+    top: -6%;
+    right: 51px;
+}
+header div{
+    padding-left: 102px;
+    font-size: 20px;
+    font-weight: 400;
+    color: #fff;
+}
 #form {
     width: 300px;
     margin: 20vh auto 0 auto;
@@ -57,4 +75,30 @@ body {
     color: #ff3860;
     font-size: 9px;
     height: 13px;
+}
+.pass{
+    position: relative;;
+}
+.pass2{
+    position: relative;;
+}
+.toggle-password {
+    z-index: 100;
+    position: absolute;
+    top: 54.5%;
+    right: 4%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #888;
+}
+.toggle-password2 {
+    z-index: 100;
+    position: absolute;
+    top: 54.5%;
+    right: 3%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 20px;
+    color: #888;
 }

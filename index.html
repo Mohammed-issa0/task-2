@@ -9,11 +9,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
     <script defer src="app.js"></script>
 </head>
 
 <body>
+    <!-- <header>
+        <div>Mohammed issa</div>
+        <div>Task-2</div>
+    </header> -->
     <div class="container">
+        <header>
+            <div>Mohammed issa</div>
+            <div>Task-2</div>
+        </header>
         <form id="form" action="/">
             <h1>Registration</h1>
             <div class="input-control">
@@ -31,14 +40,16 @@
                 <input id="number" name="number" type="text" maxlength="10">
                 <div class="error"></div>
             </div>
-            <div class="input-control">
+            <div class="input-control pass">
                 <label for="password">Password</label>
                 <input id="password" name="password" type="password">
+                <i class='bx bx-hide toggle-password' id="togglePassword"></i>
                 <div class="error"></div>
             </div>
-            <div class="input-control">
+            <div class="input-control pass2">
                 <label for="password2">Password again</label>
                 <input id="password2" name="password2" type="password">
+                <i class='bx bx-hide toggle-password2' id="togglePassword2"></i>
                 <div class="error"></div>
             </div>
             <button type="submit">Sign Up</button>
